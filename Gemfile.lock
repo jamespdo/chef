@@ -44,12 +44,12 @@ GIT
 PATH
   remote: .
   specs:
-    chef (19.0.9)
+    chef (19.0.20)
       addressable
       aws-sdk-s3 (~> 1.91)
       aws-sdk-secretsmanager (~> 1.46)
-      chef-config (= 19.0.9)
-      chef-utils (= 19.0.9)
+      chef-config (= 19.0.20)
+      chef-utils (= 19.0.20)
       chef-vault
       chef-zero (>= 14.0.11)
       corefoundation (~> 0.3.4)
@@ -78,13 +78,13 @@ PATH
       unf_ext (~> 0.0.8.2)
       uuidtools (>= 2.1.5, < 3.0)
       vault (~> 0.18.2)
-    chef (19.0.9-x64-mingw-ucrt)
+    chef (19.0.20-universal-mingw-ucrt)
       addressable
       aws-sdk-s3 (~> 1.91)
       aws-sdk-secretsmanager (~> 1.46)
-      chef-config (= 19.0.9)
+      chef-config (= 19.0.20)
       chef-powershell (~> 18.1.0)
-      chef-utils (= 19.0.9)
+      chef-utils (= 19.0.20)
       chef-vault
       chef-zero (>= 14.0.11)
       corefoundation (~> 0.3.4)
@@ -128,15 +128,15 @@ PATH
 PATH
   remote: chef-bin
   specs:
-    chef-bin (19.0.9)
-      chef (= 19.0.9)
+    chef-bin (19.0.20)
+      chef (= 19.0.20)
 
 PATH
   remote: chef-config
   specs:
-    chef-config (19.0.9)
+    chef-config (19.0.20)
       addressable
-      chef-utils (= 19.0.9)
+      chef-utils (= 19.0.20)
       fuzzyurl
       mixlib-config (>= 2.2.12, < 4.0)
       mixlib-shellout (>= 2.0, < 4.0)
@@ -145,7 +145,7 @@ PATH
 PATH
   remote: chef-utils
   specs:
-    chef-utils (19.0.9)
+    chef-utils (19.0.20)
       concurrent-ruby
 
 GEM
@@ -347,7 +347,7 @@ GEM
     public_suffix (5.0.1)
     rack (2.2.6.4)
     rainbow (3.1.1)
-    rake (13.0.6)
+    rake (13.2.1)
     rb-readline (0.5.5)
     regexp_parser (2.7.0)
     rexml (3.2.5)
@@ -444,8 +444,8 @@ GEM
       hashdiff (>= 0.4.0, < 2.0.0)
     webrick (1.8.1)
     win32-api (1.10.1-universal-mingw32)
-    win32-certstore (0.6.15)
-      chef-powershell (>= 1.0.12)
+    win32-certstore (0.6.16)
+      chef-powershell
       ffi
     win32-event (0.6.3)
       win32-ipc (>= 0.6.0)
@@ -513,7 +513,7 @@ DEPENDENCIES
   pry (= 0.13.0)
   pry-byebug
   pry-stack_explorer
-  rake
+  rake (>= 12.3.3)
   rb-readline
   rest-client!
   rspec
@@ -521,4 +521,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   2.3.7
+   2.3.26

@@ -11,7 +11,9 @@ gem "ffi", ">= 1.15.5"
 gem "chef-utils", path: File.expand_path("chef-utils", __dir__) if File.exist?(File.expand_path("chef-utils", __dir__))
 gem "chef-config", path: File.expand_path("chef-config", __dir__) if File.exist?(File.expand_path("chef-config", __dir__))
 # required for FIPS or bundler will pick up default openssl
-gem "openssl", "= 3.2.0" unless Gem.platforms.any? { |platform| !platform.is_a?(String) && platform.os == "darwin" }
+install_if -> { RUBY_PLATFORM !~ /darwin/ } do
+  gem "openssl", "= 3.2.0"
+end
 
 if File.exist?(File.expand_path("chef-bin", __dir__))
   # bundling in a git checkout
@@ -51,7 +53,7 @@ group(:knife_windows_deps) do
 end
 
 group(:development, :test) do
-  gem "rake"
+  gem "rake", ">= 12.3.3"
   gem "rspec"
   gem "webmock"
   gem "crack", "< 0.4.6" # due to https://github.com/jnunemaker/crack/pull/75
