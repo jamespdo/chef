@@ -55,6 +55,8 @@ pipelines:
   - habitat/test:
       definition: .expeditor/habitat-test.pipeline.yml
       trigger: default
+  - hab-export:
+      definition: .expeditor/hab-export-pipeline.yml
   # - omnibus/release:
   #     env:
   #       - IGNORE_CACHE: true # caching causes constant build failures
@@ -98,8 +100,8 @@ release_branches:
       version_constraint: 18*
   - chef-17:
       version_constraint: 17*
-  - chef-16:
-      version_constraint: 16*
+  # - chef-16:
+  #     version_constraint: 16*
 
 changelog:
   rollup_header: Changes not yet released to stable

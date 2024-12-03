@@ -1,17 +1,47 @@
 <!-- usage documentation: http://expeditor-docs.es.chef.io/configuration/changelog/ -->
 This changelog lists individual merged pull requests to Chef Infra Client and geared towards developers. For a list of significant changes per release see the [Chef Infra Client Release Notes](https://docs.chef.io/release_notes_client/).
 
-<!-- latest_release 19.0.28 -->
-## [v19.0.28](https://github.com/chef/chef/tree/v19.0.28) (2024-10-08)
+<!-- latest_release 19.0.58 -->
+## [v19.0.58](https://github.com/chef/chef/tree/v19.0.58) (2024-11-27)
 
 #### Merged Pull Requests
-- Updating Ohai [#14645](https://github.com/chef/chef/pull/14645) ([johnmccrae](https://github.com/johnmccrae))
+- Reenable _tests, allow snap retry on problem calls [#14731](https://github.com/chef/chef/pull/14731) ([tpowell-progress](https://github.com/tpowell-progress))
 <!-- latest_release -->
 
 <!-- release_rollup since=18.5.0 -->
 ### Changes not yet released to stable
 
 #### Merged Pull Requests
+- Reenable _tests, allow snap retry on problem calls [#14731](https://github.com/chef/chef/pull/14731) ([tpowell-progress](https://github.com/tpowell-progress)) <!-- 19.0.58 -->
+- Updating to add Windows builders back [#14729](https://github.com/chef/chef/pull/14729) ([johnmccrae](https://github.com/johnmccrae)) <!-- 19.0.57 -->
+- Updating to add Windows builders back [#14728](https://github.com/chef/chef/pull/14728) ([johnmccrae](https://github.com/johnmccrae)) <!-- 19.0.56 -->
+- Give snapd a bit more time to boot? [#14726](https://github.com/chef/chef/pull/14726) ([tpowell-progress](https://github.com/tpowell-progress)) <!-- 19.0.55 -->
+- Replace do-not-disturb with an actively maintained cask [#14711](https://github.com/chef/chef/pull/14711) ([tpowell-progress](https://github.com/tpowell-progress)) <!-- 19.0.54 -->
+- Fix fedora-latest tests: install dnf [#14710](https://github.com/chef/chef/pull/14710) ([jaymzh](https://github.com/jaymzh)) <!-- 19.0.53 -->
+- Temporarily bypass licensing in kitchen until Progress solves this [#14704](https://github.com/chef/chef/pull/14704) ([jaymzh](https://github.com/jaymzh)) <!-- 19.0.52 -->
+- skip openssl version check unless adhoc (nightly) omnibus pipeline [#14703](https://github.com/chef/chef/pull/14703) ([tpowell-progress](https://github.com/tpowell-progress)) <!-- 19.0.51 -->
+- GitHub Actions test cleanup [#14708](https://github.com/chef/chef/pull/14708) ([tpowell-progress](https://github.com/tpowell-progress)) <!-- 19.0.50 -->
+- Checking the Test-kitchen context with env variable [#14701](https://github.com/chef/chef/pull/14701) ([ashiqueps](https://github.com/ashiqueps)) <!-- 19.0.49 -->
+- updating webrick to overcome a CVE [#14698](https://github.com/chef/chef/pull/14698) ([johnmccrae](https://github.com/johnmccrae)) <!-- 19.0.48 -->
+- Bump inspec-core and inspec-core-bin to 6.8.11 [#14687](https://github.com/chef/chef/pull/14687) ([neha-p6](https://github.com/neha-p6)) <!-- 19.0.47 -->
+- Added docs for GHA workflows for new release branches [#14689](https://github.com/chef/chef/pull/14689) ([tpowell-progress](https://github.com/tpowell-progress)) <!-- 19.0.46 -->
+- Bump multiple dependencies to bump inspec-core to 6 [#14658](https://github.com/chef/chef/pull/14658) ([neha-p6](https://github.com/neha-p6)) <!-- 19.0.45 -->
+- CHEF-11803: Integrate `chef-licensing` library with Infra [#14467](https://github.com/chef/chef/pull/14467) ([ahasunos](https://github.com/ahasunos)) <!-- 19.0.44 -->
+- Temporarily removing windows from AdHoc [#14676](https://github.com/chef/chef/pull/14676) ([johnmccrae](https://github.com/johnmccrae)) <!-- 19.0.43 -->
+- [backport] Updating the regex glob [#14674](https://github.com/chef/chef/pull/14674) ([johnmccrae](https://github.com/johnmccrae)) <!-- 19.0.42 -->
+- Commit the Gemfile.lock from fixed Gemfile [#14673](https://github.com/chef/chef/pull/14673) ([tpowell-progress](https://github.com/tpowell-progress)) <!-- 19.0.41 -->
+- Add ActiveSupport-like methods to Immutablize Mixins for Array and Hash [#14667](https://github.com/chef/chef/pull/14667) ([ahasunos](https://github.com/ahasunos)) <!-- 19.0.40 -->
+- Habitat test expansion [#14573](https://github.com/chef/chef/pull/14573) ([tpowell-progress](https://github.com/tpowell-progress)) <!-- 19.0.39 -->
+- Bump webrick from 1.8.1 to 1.8.2 in /omnibus [#14651](https://github.com/chef/chef/pull/14651) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 19.0.38 -->
+- Bump rexml from 3.3.1 to 3.3.6 in /omnibus [#14644](https://github.com/chef/chef/pull/14644) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 19.0.37 -->
+- Resource fixes for Target Mode [#14640](https://github.com/chef/chef/pull/14640) ([thheinen](https://github.com/thheinen)) <!-- 19.0.36 -->
+- Testing for what broke adhoc [#14662](https://github.com/chef/chef/pull/14662) ([johnmccrae](https://github.com/johnmccrae)) <!-- 19.0.35 -->
+- Temporarily removing MacOS [#14660](https://github.com/chef/chef/pull/14660) ([johnmccrae](https://github.com/johnmccrae)) <!-- 19.0.34 -->
+- Fix windows plan [#14655](https://github.com/chef/chef/pull/14655) ([sajjaphani](https://github.com/sajjaphani)) <!-- 19.0.33 -->
+- port rdoc vulnerability update from chef 18 [#14648](https://github.com/chef/chef/pull/14648) ([rishichawda](https://github.com/rishichawda)) <!-- 19.0.32 -->
+- Updating the plan files [#14608](https://github.com/chef/chef/pull/14608) ([johnmccrae](https://github.com/johnmccrae)) <!-- 19.0.31 -->
+- Revert &quot;Updating Ohai&quot; [#14647](https://github.com/chef/chef/pull/14647) ([johnmccrae](https://github.com/johnmccrae)) <!-- 19.0.30 -->
+- Set channel for habitat plan script in verify pipeline to LTS-2024 for windows platforms [#14646](https://github.com/chef/chef/pull/14646) ([neha-p6](https://github.com/neha-p6)) <!-- 19.0.29 -->
 - Updating Ohai [#14645](https://github.com/chef/chef/pull/14645) ([johnmccrae](https://github.com/johnmccrae)) <!-- 19.0.28 -->
 - Update builders to temporarily remove ubuntu24 [#14642](https://github.com/chef/chef/pull/14642) ([johnmccrae](https://github.com/johnmccrae)) <!-- 19.0.27 -->
 - Fixing missing rspec in hab plan testing [#14630](https://github.com/chef/chef/pull/14630) ([johnmccrae](https://github.com/johnmccrae)) <!-- 19.0.26 -->

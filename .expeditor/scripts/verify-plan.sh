@@ -5,6 +5,12 @@ set -euo pipefail
 export HAB_ORIGIN='ci'
 export PLAN='chef-infra-client'
 export CHEF_LICENSE="accept-no-persist"
+# Read the CHEF_LICENSE_SERVER value from chef_license_server_url.txt
+# Ideally, this value would have been read from a centralized environment such as a GitHub environment,
+# Buildkite environment, or a vault, allowing for seamless updates without requiring a pull request for changes.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Use SCRIPT_DIR to refer to files relative to the script’s location
+export CHEF_LICENSE_SERVER=$(cat "$SCRIPT_DIR/chef_license_server_url.txt")
 export HAB_LICENSE="accept-no-persist"
 export HAB_NONINTERACTIVE="true"
 export HAB_BLDR_CHANNEL="LTS-2024"
@@ -17,6 +23,10 @@ error () {
 
   exit 1
 }
+
+echo "--- :habicat: Patching /etc/nsswitch.conf to ensure 'files' is listed first and that we remove myhostname"
+sed -i 's/hosts:      files dns myhostname/hosts:      files dns/g' /etc/nsswitch.conf
+sed -i 's/networks:   files dns/networks:   files/g' /etc/nsswitch.conf
 
 echo "--- :8ball: :linux: Verifying $PLAN"
 project_root="$(git rev-parse --show-toplevel)"

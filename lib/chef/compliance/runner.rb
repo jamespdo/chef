@@ -1,4 +1,9 @@
-autoload :Inspec, "inspec"
+# Requiring inspec instead of lazy loading temporarily to get past License validation failures in Inspec 6.
+# When compliance phase of Infra Client is run, the lazy loading ends up calling production environment values for few variables(such as Licensing server URL)
+# which are set as default in Inspec, instead of the test values passed in pipelines
+#
+# autoload :Inspec, "inspec"
+require "inspec"
 
 require_relative "default_attributes"
 
@@ -116,6 +121,7 @@ class Chef
 
       def report(report = nil)
         logger.info "Starting Chef Infra Compliance Phase"
+        Chef::Licensing.check_software_entitlement_compliance_phase! if ChefUtils::Dist::Inspec::EXEC == "inspec"
         report ||= generate_report
         # This is invoked at report-time instead of with the normal validations at node loaded,
         # because we want to ensure that it is visible in the output - and not lost in back-scroll.
@@ -131,6 +137,8 @@ class Chef
           @reporters[reporter_type].send_report(report)
         end
         logger.info "Chef Infra Compliance Phase Complete"
+      rescue Chef::Licensing::EntitlementError => e
+        logger.error "Skipping Chef Infra Compliance Phase because the license does not have the required entitlement for Chef InSpec."
       end
 
       def inputs_from_attributes

@@ -137,6 +137,7 @@ RSpec.configure do |config|
   config.filter_run_excluding volatile_from_verify: false
 
   config.filter_run_excluding skip_buildkite: true if ENV["BUILDKITE"]
+  config.filter_run_excluding skip_hab_test: true if hab_test?
 
   config.filter_run_excluding fips_mode_test: true unless fips_mode_build?
   config.filter_run_excluding fips_mode_negative_test: true # disable all fips_mode negative tests
@@ -178,6 +179,7 @@ RSpec.configure do |config|
   config.filter_run_excluding requires_unprivileged_user: true if root?
   config.filter_run_excluding openssl_gte_101: true unless openssl_gte_101?
   config.filter_run_excluding openssl_lt_101: true unless openssl_lt_101?
+  config.filter_run_excluding openssl_version_check: true unless ENV.fetch("BUILDKITE_PIPELINE_SLUG", "").match?("adhoc")
   config.filter_run_excluding aes_256_gcm_only: true unless aes_256_gcm?
   config.filter_run_excluding broken: true
   config.filter_run_excluding not_wpar: true unless wpar?
@@ -239,6 +241,7 @@ RSpec.configure do |config|
 
     Chef.reset!
 
+    allow(TTY::Spinner).to receive(:new).and_return(double("TTY::Spinner").as_null_object)
     # Hack warning:
     #
     # Something across gem_installer_spec and mixlib_cli specs are polluting gem state so that the 'unmockening' test in rubygems_spec fails.
@@ -346,3 +349,27 @@ end
 
 # Enough stuff needs json serialization that I'm just adding it here for equality asserts
 require "chef/json_compat"
+
+if hab_test?
+  # the chef-bin executables not in the bundle if run through hab
+  class Chef
+    module Mixin
+      module ShellOut
+        def self.included(other_module)
+          [%i{shell_out! shell_out_compacted!}, %i{shell_out shell_out_compacted}].each do |shell_out, shell_out_compacted|
+            other_module.define_method shell_out do |*args, **options|
+              options = options.dup
+              options = __maybe_add_timeout(self, options)
+              args = args.dup.map { |str| str.gsub(/^bundle exec /, "") }
+              if options.empty?
+                send(shell_out_compacted, *__clean_array(*args))
+              else
+                send(shell_out_compacted, *__clean_array(*args), **options)
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end
